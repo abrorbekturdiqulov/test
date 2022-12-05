@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Read book</title>
+    <style>
+        .container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="text-center" id="viewerCanvas"></div>
+    </div>
+    <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>
+    <script type="text/javascript">
+      google.books.load();
+      function initialize() {
+        let viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
+        let index = document.URL.indexOf('?');
+        if (index > 0) {
+            var bookIsbn = document.URL.substring(index, document.URL.length).split("=")[1]
+            console.log(bookIsbn);
+        }
+        viewer.load('ISBN:'+bookIsbn);
+      }
+      google.books.setOnLoadCallback(initialize);
+    </script>    
+  </body>
+</html>
